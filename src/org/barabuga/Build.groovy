@@ -10,25 +10,25 @@ class Build {
 	
 	def buildUnix(label, stashName) {
 		globals.node(label) {
-			checkout globals.scm
-			sh """#!/bin/sh
+			globals.checkout globals.scm
+			globals.sh """#!/bin/sh
 				gcc hello.c -o hello_${label}.out
 			"""
-			stash name: stashName, includes: "*.out"
-			deleteDir()
+			globals.stash name: stashName, includes: "*.out"
+			globals.deleteDir()
 		}
 	}
 
 	def buildWin(label, stashName) {
 		globals.node(label) {
-			checkout globals.scm
+			globals.checkout globals.scm
 			String vsvars_bat = 'Microsoft Visual Studio 12.0\\VC\\vcvarsall.bat'
-			bat """
+			globals.bat """
 				call "%ProgramFiles(X86)%\\${vsvars_bat}" x86
 				cl.exe hello.c
 			"""
-			stash name: stashName, includes: "*.exe"
-			deleteDir()
+			globals.stash name: stashName, includes: "*.exe"
+			globals.deleteDir()
 		}
 	}
 }
