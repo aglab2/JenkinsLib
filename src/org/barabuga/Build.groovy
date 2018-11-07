@@ -10,7 +10,7 @@ class Build {
 	
 	def buildUnix(label, stashName) {
 		globals.node(label) {
-			checkout scm
+			checkout globals.scm
 			sh """#!/bin/sh
 				gcc hello.c -o hello_${label}.out
 			"""
@@ -21,7 +21,7 @@ class Build {
 
 	def buildWin(label, stashName) {
 		globals.node(label) {
-			checkout scm
+			checkout globals.scm
 			String vsvars_bat = 'Microsoft Visual Studio 12.0\\VC\\vcvarsall.bat'
 			bat """
 				call "%ProgramFiles(X86)%\\${vsvars_bat}" x86
