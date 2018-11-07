@@ -1,3 +1,5 @@
+package org.barabuga;
+
 def buildUnix(label, stashName) {
 	node(label) {
 		checkout scm
@@ -21,3 +23,5 @@ def buildWin(label, stashName) {
 		deleteDir()
 	}
 }
+
+return this;
