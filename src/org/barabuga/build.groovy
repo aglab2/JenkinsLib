@@ -1,5 +1,6 @@
 package org.barabuga;
 
+
 class Build {
 	Build() {}
 	def buildUnix(label, stashName) {
